@@ -1,5 +1,9 @@
 # Güneş Rüzgarını Kendine Karşı Kullanmak: Manyetik Tesla Valfi ile Uzay Radyasyonundan Korunma
 
+[Read this article in English](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/edit/main/Gemini(English).md)
+
+#### Katkıda Bulunan Gemini
+
 ### Mekanik Parçalar ve Hassas Elektronikler Olmadan, Akışkanlar Mekaniği ve Plazma Fiziğinin Zarif Ortaklığıyla Gezegensel Kalkan Tasarlamak
 
 İnsanoğlunun Ay’da kalıcı üsler kurma ve Mars’ı kolonileştirme hayalinin önündeki en acımasız engel, mesafeler ya da lojistik değil; görünmez bir katildir: **Güneş Radyasyonu**. Dünyadayken, gezegenimizin erimiş demir çekirdeğinin ürettiği devasa manyetik kalkan (manyetosfer) sayesinde güvendeyiz. Ancak atmosferi ve küresel manyetik alanı olmayan bir gökcismine adım attığımızda, güneşten gelen yüksek enerjili parçacıkların fırtınasına karşı tamamen savunmasız kalırız.
