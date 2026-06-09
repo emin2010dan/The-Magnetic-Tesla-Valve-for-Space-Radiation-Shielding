@@ -123,7 +123,6 @@ Ay'a ve Mars'a giden yol, belki de Tesla'nın bu zarif fikriyle biraz daha kısa
 
 ---
 
-
 *Bu makale, güneş rüzgarı kalkanlama mekanizmaları üzerine yürütülen spekülatif bir araştırma çalışmasının parçasıdır. Matematiksel modeller henüz deneysel doğrulama aşamasında değildir; teorik bir çerçeve olarak sunulmaktadır.*
 
 # Pasif Güneş Rüzgarı Manyetik Kalkanı — Teknik Çerçeve
@@ -444,5 +443,4 @@ Süperiletken kritik sıcaklıkları (örnekler):
 
 ---
 
-*Hesaplayıcı ve interaktif formül aracı: [Medium makalesine bağlantılı widget]*  
 *Yazar: Emin | Lisans: CC BY 4.0*
