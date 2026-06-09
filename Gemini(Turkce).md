@@ -1,4 +1,4 @@
-# Güneş Rüzgarını Kendine Karşı Kullanmak: Manyetik Tesla Valfi ile Uzay Radyasyonundan Korunma
+# Güneş Rüzgarını Kendine Karşı Kullanmak: Manyetik Tesla Valfı ile Uzay Radyasyonundan Korunma
 
 [Read this article in English](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/blob/main/Gemini(English).md)
 
