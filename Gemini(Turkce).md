@@ -43,9 +43,8 @@ Bu vizyoner yaklaşım, uzay kolonizasyonunun en büyük maliyet kalemi olan "ak
 
 Peki, bir adım daha ileri gidebilir miyiz? Bu sıkışan ve yönü değiştirilen plazma akışını sadece savuşturmakla kalmayıp, endüktif kuplaj yoluyla koloninin enerji ihtiyacını karşılayacak devasa bir plazma bataryasına dönüştürebilir miyiz? Teknik detayları ve matematiksel modelleri paylaştığım GitHub dokümanına göz atarak bu beyin fırtınasına katılabilirsiniz.
 
-***
 
-> **Yazar Notu:** Medium okuyucuları için formüllerden arındırılmış bu konsept makalesinin teknik altyapısını, Magnetohidrodinamik (MHD) denklemlerini ve korunum yasalarını içeren matematiksel modeli GitHub repomuzda bulabilirsiniz.
+
 
 # Manyetik Tesla Valfi ve Pasif Radyasyon Kalkanı
 ## Teknik Spesifikasyonlar ve Matematiksel Model
@@ -95,14 +94,19 @@ Giriş hunisinden sızan parçacıklar, üsse doğru daralan manyetik alan grady
 
 $$\mu_m = \frac{m v_\perp^2}{2B} = \text{Sabit}$$
 
-Manyetik alan şiddeti $B$ arttıkça, parçacığın dik hızı ($v_\perp$) artmak zorundadır. Toplam kinetik enerji ($E_k = \frac{1}{2}m v_\parallel^2 + \frac{1}{2}m v_\perp^2$) korunduğu için, paralel hız ($v_\parallel$) sıfıfıra düşer ve yön değiştirir:
+Manyetik alan şiddeti $B$ arttıkça, parçacığın dik hızı ($v_\perp$) artmak zorundadır. Toplam kinetik enerji ($E_k = \frac{1}{2}m v_\parallel^2 + \frac{1}{2}m v_\perp^2$) korunduğu için, paralel hız ($v_\parallel$) sıfıra düşer ve yön değiştirir:
 
 $$v_\parallel = \sqrt{\frac{2}{m}(E_k - \mu_m B)}$$
 
 Eğer $B_{\text{maks}} > \frac{E_k}{\mu_m}$ ise parçacık **Manyetik Ayna** noktasından geri yansıtılır (Tesla valfinin ters ceplerine dönüş hareketi).
 
 ### 2.2 Geri Besleme ve Plazma Girdapları (Vorteks)
-Geri yansıyan plazma akımı ($\mathbf{v}_{\text{geri}}$), yukarıdan gelmeye devam eden ana plazma akımı ($\mathbf{v}_{\text{ana}}$) ile karşılaşır. İki zıt yönlü plazma akışının etkileşimi, lokal bir şok dalgası ve makroskobik plazma girdapları (vorteks) oluşturur. 
+Geri yansıyan plazma akımı ($\mathbf{v}_{\text{geri}}$),
+
+yukarıdan gelmeye devam eden ana plazma akımı ($\mathbf{v}_{\text{ana}}$) 
+
+ile karşılaşır. İki zıt yönlü plazma akışının etkileşimi, lokal bir şok dalgası ve makroskobik plazma girdapları (vorteks) oluşturur. 
+
 
 Bu durum, lokal akım yoğunluğunu ($\mathbf{J} = \nabla \times \mathbf{B} / \mu_0$) ekstrem düzeyde artırarak ana akışa karşı duran lokal bir **Manyetik Basınç** ($P_B$) bariyeri yaratır:
 
@@ -116,9 +120,10 @@ Gelen plazmanın kinetik basıncı ($P_k = \frac{1}{2}\rho v^2$) bu manyetik bas
 
 Sistemin elektroniksiz kararlılığı, sistemin kendi kendini besleyen (self-regulating) endüktif doğasına dayanır. Güneş fırtınası (CME) sırasında plazma akısı aniden arttığında ($\Delta \Phi_B / \Delta t >> 0$), Faraday İndüksiyon Kanunu uyarınca süperiletken halkalarda bir Elektromotor Kuvvet (EMF) indüklenir:
 
-$$\mathcal{\Epsilon} = -\frac{d\Phi_B}{dt}$$
 
-Süperiletken döngülerin direnci sıfıra yakın ($R \approx 0$) olduğundan, indüklenen akım ($I = \mathcal{\Epsilon}/R$) muazzam bir hıza ulaşır ve Lenz Kanunu gereği gelen fırtınayı durduracak zıt yönlü manyetik momenti ($\mathbf{m}$) üretir:
+$$\mathcal{\epsilon} = -\frac{d\Phi_B}{dt}$$
+
+Süperiletken döngülerin direnci sıfıra yakın ($R \approx 0$) olduğundan, indüklenen akım ($I = \mathcal{\epsilon}/R$) muazzam bir hıza ulaşır ve Lenz Kanunu gereği gelen fırtınayı durduracak zıt yönlü manyetik momenti ($\mathbf{m}$) üretir:
 
 $$\mathbf{m} = I \cdot \mathbf{A}$$
 
@@ -128,6 +133,5 @@ Bu analog geri besleme döngüsünün yanıt süresi, ışık hızına ve plazma
 
 ## 4. GitHub Kullanıcıları ve Geliştiriciler İçin Notlar
 
-* **Simülasyonlar:** Repomuzun içerisindeki `/simulations` dizininde, bu manyetik geometrinin **OpenFOAM** ve **COMSOL Multiphysics** (MHD Modülü) kullanılarak yapılmış 2D ve 3D plazma akış analizlerini bulabilirsiniz.
 * **Katkıda Bulunma:** Manyetik ceplerin geometrik optimizasyonu ve plazma kararsızlıklarının (özellikle Rayleigh-Taylor ve Kelvin-Helmholtz kararsızlıkları) kalkan üzerindeki sönümleme etkileri üzerine katkılarınızı bekliyoruz.
 
