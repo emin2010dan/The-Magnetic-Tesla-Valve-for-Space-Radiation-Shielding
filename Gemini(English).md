@@ -1,6 +1,6 @@
 # Weaponizing the Solar Wind Against Itself: The Magnetic Tesla Valve for Space Radiation Shielding
 
-[Bu makalenin Türkçe versiyonu](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/edit/main/Gemini(Turkce).md)
+[Bu makalenin Türkçe versiyonu](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/blob/main/Gemini(Turkce).md)
 
 #### Contributed By Gemini
 
