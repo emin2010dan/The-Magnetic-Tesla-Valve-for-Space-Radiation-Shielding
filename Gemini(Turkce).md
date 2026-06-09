@@ -1,6 +1,6 @@
 # Güneş Rüzgarını Kendine Karşı Kullanmak: Manyetik Tesla Valfi ile Uzay Radyasyonundan Korunma
 
-[Read this article in English](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/edit/main/Gemini(English).md)
+[Read this article in English](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/blob/main/Gemini(English).md)
 
 #### Katkıda Bulunan Gemini
 
