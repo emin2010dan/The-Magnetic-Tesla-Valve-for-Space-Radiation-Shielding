@@ -1,5 +1,9 @@
 # Güneş Rüzgarından Zırh Yapmak: Tesla'nın Dehasını Uzaya Taşımak
 
+[Read this article in English](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/blob/main/Claude(English).md)
+
+#### Katkıda Bulunan Claude
+
 *Ay'a ve Mars'a yerleşmenin önündeki en büyük tehdit, belki de tahmin ettiğinizden çok daha sessiz geliyor.*
 
 ---
