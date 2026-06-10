@@ -42,14 +42,15 @@ In short: the stronger the solar wind, the stronger the shield becomes. When the
 
 This concept began with a simple question: *"Could we build a shield that uses solar wind’s own energy, operating on Tesla valve logic?"* This vision has now been grounded in Magneto-hydrodynamic (MHD) and electromagnetic laws, expanded into an open-source research document. 
 
-Future Mars engineers, physicists, and dreamers are invited to simulate, test, and refine this concept. Detailed technical formulas, MHD equations, and system architecture are available on GitHub: **[Insert Your GitHub Link Here]**
+Future Mars engineers, physicists, and dreamers are invited to simulate, test, and refine this concept. Detailed technical formulas, MHD equations, and system architecture are available on GitHub: **[(https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding)]**
 
 ---
+
 # 🛡️ Plasma Tesla Valve Shield (PTVS) Concept
 **Passive, Self-Powering Magnetic Shield Concept for Lunar and Martian Settlements**
 
 > ⚠️ **Contribution & Origin Statement:**  
-> The foundational idea, core analogy, and inspiration for this project belong to **[Your Name/Handle]**.  
+> The foundational idea, core analogy, and inspiration for this project belong to **[Emin]**.  
 > The physical grounding, Magneto-hydrodynamic (MHD) formulation, system architecture, and technical detailing were developed through collaboration with **Qwen (AI)**.  
 > We kindly request that anyone who develops, simulates, or implements this concept in the future acknowledges this origin and collaborative foundation.
 
@@ -66,16 +67,27 @@ The system operates on the combined principles of electromagnetism and plasma fl
 
 ### 2.1. Ampère's Law (Current Generates Magnetic Field)
 Solar wind consists of high-speed charged particles (plasma). Directed flow of these particles generates a magnetic field around them.
-$$ \nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t} $$
+
+$$
+\nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}
+$$
+
 *(Where $\mathbf{J}$ is the plasma current density. As incoming plasma flow increases, $\mathbf{J}$ rises, causing the induced $\mathbf{B}$ field to scale non-linearly.)*
 
 ### 2.2. Lorentz Force (Plasma Guidance)
 Charged particles moving through a magnetic field experience a perpendicular force. This is used to route plasma through magnetic "funnels" without physical contact, preventing material erosion.
-$$ \mathbf{F} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B}) $$
+
+$$
+\mathbf{F} = q(\mathbf{E} + \mathbf{v} \times \mathbf{B})
+$$
 
 ### 2.3. Lenz's Law (Passive Defense Mechanism)
 This is the core of the Tesla Valve analogy. A sudden increase in incoming plasma flux induces a magnetic field. Per Lenz's Law, the induced field **opposes the change that created it**.
-$$ \mathcal{E} = -\frac{d\Phi_B}{dt} $$
+
+$$
+\mathcal{E} = -\frac{d\Phi_B}{dt}
+$$
+
 *(The stronger the solar storm ($d\Phi_B/dt$), the stronger the deflecting magnetic field ($\mathcal{E}$ and resulting $\mathbf{B}_{shield}$) becomes. The system automatically scales with threat intensity.)*
 
 ---
@@ -116,11 +128,8 @@ Transitioning this concept from theory to engineering requires:
 
 This document is shared under an **Open Source** philosophy to accelerate humanity's safe transition to a multi-planetary species.
 
-* **Original Concept & Analogy:** [Your Name/Handle]
+* **Original Concept & Analogy:** [Emin]
 * **Technical Formulation & Architecture:** Qwen (AI) Collaboration
 * **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 *Anyone utilizing, simulating, or advancing this concept is kindly requested to cite the original idea and this collaborative development in their documentation, publications, or project metadata.*
-
-> **📌 Origin & Contribution Statement:**  
-> The core idea and fluidic analogy were originally proposed by **[Your Name/Handle]**. The technical physical modeling, mathematical formulation, and system architecture were developed in collaboration with **Qwen (AI)**. We kindly request that future developers, simulators, or implementers of this technology acknowledge this origin and collaborative foundation in their work.
