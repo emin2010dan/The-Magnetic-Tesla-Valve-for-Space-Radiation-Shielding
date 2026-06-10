@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passive Solar Wind Shield — Interactive Calculator</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d1117;
+      --bg2:       #161b22;
+      --bg3:       #21262d;
+      --border:    #30363d;
+      --text:      #e6edf3;
+      --text2:     #8b949e;
+      --text3:     #6e7681;
+      --accent:    #58a6ff;
+      --green:     #3fb950;
+      --amber:     #d29922;
+      --red:       #f85149;
+      --teal:      #1d9e75;
+      --purple:    #bc8cff;
+      --mono:      'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      --sans:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --radius:    8px;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0;
+    }
+
+    /* ── Layout ── */
+    .page-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* ── Header ── */
+    header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+    header h1 { font-size: 1.6rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+    header p  { color: var(--text2); font-size: 0.9rem; max-width: 680px; }
+    .badge {
+      display: inline-block; margin-top: 0.75rem; padding: 0.2rem 0.6rem;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 20px; font-size: 0.75rem; color: var(--text2); margin-right: 6px;
+    }
+
+    /* ── Section titles ── */
+    .section { margin-bottom: 2.5rem; }
+    .section-title {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text3);
+      margin-bottom: 1rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    }
+    .card-title {
+      font-size: 0.85rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px;
+    }
+    .step-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--bg3); border: 1px solid var(--border);
+      font-size: 0.72rem; color: var(--accent); font-weight: 600; flex-shrink: 0;
+    }
+
+    /* ── Sliders ── */
+    .slider-block { margin-bottom: 1rem; }
+    .slider-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; }
+    .slider-label { font-size: 0.82rem; color: var(--text2); }
+    .slider-label code { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); background: var(--bg3); padding: 1px 5px; border-radius: 3px; }
+    .slider-value { font-family: var(--mono); font-size: 0.85rem; color: var(--text); min-width: 90px; text-align: right; }
+    .hint { font-size: 0.75rem; color: var(--text3); margin-top: 0.2rem; }
+
+    input[type=range] {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 4px;
+      background: var(--bg3); border-radius: 2px; outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--accent); cursor: pointer;
+      border: 2px solid var(--bg2);
+      transition: background 0.15s;
+    }
+    input[type=range]:hover::-webkit-slider-thumb { background: #79b8ff; }
+
+    /* ── Formula display ── */
+    .formula {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.5rem 0.75rem;
+      font-family: var(--mono); font-size: 0.85rem; color: var(--text);
+      margin: 0.5rem 0;
+    }
+    .formula-result {
+      font-family: var(--mono); font-size: 0.9rem;
+      color: var(--teal); margin-top: 0.4rem; padding-left: 2px;
+    }
+    .explain { font-size: 0.8rem; color: var(--text2); margin-top: 0.4rem; line-height: 1.6; }
+
+    /* ── Results grid ── */
+    .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+    .result-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.1rem;
+    }
+    .result-card .label { font-size: 0.75rem; color: var(--text3); margin-bottom: 0.3rem; }
+    .result-card .value { font-family: var(--mono); font-size: 1.5rem; font-weight: 600; color: var(--text); }
+    .result-card .unit  { font-size: 0.75rem; color: var(--text3); margin-top: 0.1rem; }
+
+    /* ── Shield bar ── */
+    .bar-label { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.5rem; }
+    .bar-track {
+      height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; margin-bottom: 0.6rem;
+    }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease, background 0.4s ease; }
+    .status-line { font-size: 0.82rem; color: var(--text2); }
+    .status-line.ok   { color: var(--green); }
+    .status-line.warn { color: var(--amber); }
+    .status-line.bad  { color: var(--red); }
+
+    /* ── Self-regulation box ── */
+    .self-reg {
+      border: 1px solid var(--teal); border-radius: var(--radius);
+      padding: 1rem 1.25rem; background: rgba(29,158,117,0.06);
+    }
+    .self-reg .title { font-size: 0.85rem; font-weight: 600; color: var(--teal); margin-bottom: 0.5rem; }
+    .self-reg .chain { font-family: var(--mono); font-size: 0.8rem; color: var(--text2); line-height: 2; }
+    .self-reg .chain span { color: var(--teal); }
+
+    /* ── Physics chain diagram ── */
+    .chain-diagram {
+      display: flex; align-items: center; gap: 0;
+      flex-wrap: wrap; margin: 1rem 0;
+    }
+    .chain-box {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.5rem 0.8rem;
+      font-size: 0.78rem; color: var(--text2); text-align: center; white-space: nowrap;
+    }
+    .chain-box strong { display: block; color: var(--text); font-size: 0.82rem; margin-bottom: 2px; }
+    .chain-arrow { color: var(--text3); font-size: 1.1rem; padding: 0 6px; flex-shrink: 0; }
+    .chain-label { font-size: 0.68rem; color: var(--accent); display: block; margin-top: 3px; }
+
+    /* ── Tables ── */
+    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    th { text-align: left; padding: 0.5rem 0.75rem; color: var(--text3); font-weight: 500; border-bottom: 1px solid var(--border); }
+    td { padding: 0.45rem 0.75rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+    td:first-child { font-family: var(--mono); color: var(--accent); }
+    tr:last-child td { border-bottom: none; }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; gap: 4px; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+    .tab-btn {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      color: var(--text3); font-size: 0.85rem; padding: 0.5rem 1rem;
+      cursor: pointer; font-family: var(--sans); margin-bottom: -1px;
+      transition: color 0.15s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+      font-size: 0.78rem; color: var(--text3);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .page-wrap { padding: 1.25rem 1rem 3rem; }
+      header h1 { font-size: 1.3rem; }
+      .chain-diagram { gap: 4px; }
+      .chain-arrow { padding: 0 2px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <h1>Passive Solar Wind Magnetic Shield</h1>
+    <p>
+      A Tesla-valve-inspired shielding concept: solar wind plasma is guided
+      into a toroidal current loop that generates its own magnetic field —
+      stronger wind produces a stronger shield, with no active electronics.
+    </p>
+    <span class="badge">Theoretical framework</span>
+    <span class="badge">CC BY 4.0</span>
+    <span class="badge">emin2010dan</span>
+  </header>
+
+  <!-- ── TABS ── -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('calculator')">Calculator</button>
+    <button class="tab-btn" onclick="switchTab('physics')">Physics chain</button>
+    <button class="tab-btn" onclick="switchTab('symbols')">Symbol table</button>
+  </div>
+
+  <!-- ══════════════ TAB: CALCULATOR ══════════════ -->
+  <div id="tab-calculator" class="tab-panel active">
+
+    <!-- Input sliders -->
+    <div class="section">
+      <div class="section-title">① Solar wind inputs — adjust the sliders</div>
+
+      <div class="card">
+        <div class="slider-block">
+          <div class="slider-header">
+            <span class="slider-label"><code>n_sw</code> Particle density</span>
+            <span class="slider-value" id="nsw-v">8 cm⁻³</span>
+          </div>
+          <input type="range" id="nsw" min="1" max="50" value="8" step="1" oninput="calc()">
+          <div class="hint">Quiet wind: 5–10 cm⁻³ &nbsp;|&nbsp; Solar storm (CME): 20–50 cm⁻³</div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-header">
+            <span class="slider-label"><code>v_sw</code> Flow velocity</span>
+            <span class="slider-value" id="vsw-v">400 km/s</span>
+          </div>
+          <input type="range" id="vsw" min="200" max="1200" value="400" step="50" oninput="calc()">
+          <div class="hint">Slow wind: 300–400 km/s &nbsp;|&nbsp; CME storm: 800–1200 km/s</div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-header">
+            <span class="slider-label"><code>θ</code> Channel deflection angle</span>
+            <span class="slider-value" id="theta-v">90°</span>
+          </div>
+          <input type="range" id="theta" min="20" max="160" value="90" step="5" oninput="calc()">
+          <div class="hint">90° = highest practical efficiency &nbsp;|&nbsp; η(θ) = sin²(θ/2)</div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-header">
+            <span class="slider-label"><code>R</code> Ring radius</span>
+            <span class="slider-value" id="Rring-v">500 m</span>
+          </div>
+          <input type="range" id="Rring" min="50" max="2000" value="500" step="50" oninput="calc()">
+          <div class="hint">Physical size of the toroidal current loop</div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-header">
+            <span class="slider-label"><code>A</code> Collector area</span>
+            <span class="slider-value" id="Acol-v">5,000 m²</span>
+          </div>
+          <input type="range" id="Acol" min="100" max="100000" value="5000" step="500" oninput="calc()">
+          <div class="hint">Total cross-section of the magnetic funnel collector</div>
+        </div>
+
+        <div class="slider-block">
+          <div class="slider-header">
+            <span class="slider-label"><code>r_hab</code> Habitat radius</span>
+            <span class="slider-value" id="rhab-v">200 m</span>
+          </div>
+          <input type="range" id="rhab" min="50" max="2000" value="200" step="50" oninput="calc()">
+          <div class="hint">Radius of the settlement zone to be protected</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step-by-step formulas -->
+    <div class="section">
+      <div class="section-title">② Step-by-step calculation</div>
+
+      <div class="card">
+        <div class="card-title"><span class="step-badge">1</span> Kinetic energy flux</div>
+        <div class="formula">Φ = ½ · ρ · v_sw³    where  ρ = n_sw · m_p</div>
+        <div class="explain">
+          m_p = 1.67×10⁻²⁷ kg (proton mass). Power per unit area carried by the wind.
+          <strong style="color:#d29922">Cube-law:</strong> doubling v_sw increases Φ by ×8.
+        </div>
+        <div class="formula-result" id="flux-result"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="step-badge">2</span> Channel efficiency (Tesla principle)</div>
+        <div class="formula">η(θ) = sin²(θ/2)</div>
+        <div class="explain">
+          The fraction of incoming plasma successfully redirected into the toroidal path.
+          Peaks at θ = 90°–120° for practical designs. This is the direct analogue of
+          the Tesla valve's geometric counter-current.
+        </div>
+        <div class="formula-result" id="eta-result"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="step-badge">3</span> Effective ring current</div>
+        <div class="formula">I_eff = η · q · n_sw · v_sw · A_collector</div>
+        <div class="explain">
+          q = 1.6×10⁻¹⁹ C (proton charge).
+          q · n_sw · v_sw is the charge flux [A/m²]. Multiplied by collector area gives total current.
+          η scales how much of that current forms a closed toroidal loop.
+        </div>
+        <div class="formula-result" id="ieff-result"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="step-badge">4</span> Magnetic field (Biot-Savart)</div>
+        <div class="formula">B_shield = μ₀ · I_eff / (2R)</div>
+        <div class="explain">
+          μ₀ = 4π×10⁻⁷ T·m/A. Field at the centre of a circular current loop of radius R.
+          Larger R → weaker centre field but broader coverage — this is the key design trade-off.
+        </div>
+        <div class="formula-result" id="bfield-result"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="step-badge">5</span> Magnetopause distance</div>
+        <div class="formula">r_mp = R · [B² / (2μ₀ · ρ · v_sw²)]^(1/6)</div>
+        <div class="explain">
+          The standoff distance where magnetic pressure equals solar wind dynamic pressure.
+          Particles are deflected beyond this point. <strong>Target: r_mp ≥ 2 × r_habitat</strong>.
+        </div>
+        <div class="formula-result" id="rmp-result"></div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="section">
+      <div class="section-title">③ Shield summary</div>
+
+      <div class="result-grid">
+        <div class="result-card">
+          <div class="label">Ring current</div>
+          <div class="value" id="res-ieff">—</div>
+          <div class="unit">Amperes</div>
+        </div>
+        <div class="result-card">
+          <div class="label">B field</div>
+          <div class="value" id="res-b">—</div>
+          <div class="unit">nanotesla</div>
+        </div>
+        <div class="result-card">
+          <div class="label">Magnetopause</div>
+          <div class="value" id="res-rmp">—</div>
+          <div class="unit">metres</div>
+        </div>
+        <div class="result-card">
+          <div class="label">Deflection</div>
+          <div class="value" id="res-d">—</div>
+          <div class="unit">%</div>
+        </div>
+      </div>
+
+      <div class="bar-label">Shield effectiveness</div>
+      <div class="bar-track">
+        <div class="bar-fill" id="shield-bar" style="width:0%"></div>
+      </div>
+      <div class="status-line" id="shield-status">Calculating…</div>
+    </div>
+
+    <!-- Self-regulation -->
+    <div class="self-reg">
+      <div class="title">↻ Self-regulation — the Tesla valve principle</div>
+      <div class="chain">
+        <span>v_sw ↑</span> → Φ ↑ → I_eff ↑ → B ↑ → r_mp ↑ → shield strengthens
+        <br>
+        <span>v_sw ↓</span> → Φ ↓ → I_eff ↓ → B ↓ → r_mp ↓ → shield weakens (threat is also weaker)
+        <br><br>
+        <span>r_mp ∝ v_sw^(1/2)</span>  — doubling wind velocity increases standoff distance by √2
+      </div>
+    </div>
+
+  </div><!-- /tab-calculator -->
+
+  <!-- ══════════════ TAB: PHYSICS CHAIN ══════════════ -->
+  <div id="tab-physics" class="tab-panel">
+
+    <div class="section">
+      <div class="section-title">Four-layer conversion chain</div>
+
+      <div class="chain-diagram">
+        <div class="chain-box">
+          <strong>Solar wind</strong>
+          n_sw, v_sw, B_imf
+          <span class="chain-label">plasma flow</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-box">
+          <strong>Channel</strong>
+          η(θ) = sin²(θ/2)
+          <span class="chain-label">Tesla geometry</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-box">
+          <strong>Ring current</strong>
+          I_eff = η·q·n·v·A
+          <span class="chain-label">Ampere's law</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-box">
+          <strong>B field</strong>
+          μ₀·I/(2R)
+          <span class="chain-label">Biot-Savart</span>
+        </div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-box">
+          <strong>Shield</strong>
+          r_mp, D
+          <span class="chain-label">Lorentz force</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Complete formula set</div>
+
+      <div class="card">
+        <div class="card-title">Mass density</div>
+        <div class="formula">ρ = n_sw × m_p   [kg/m³]</div>
+        <div class="explain">Convert n_sw: 1 cm⁻³ = 10⁶ m⁻³</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Energy flux</div>
+        <div class="formula">Φ = ½ × ρ × v_sw³   [W/m²]</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Channel efficiency</div>
+        <div class="formula">η(θ) = sin²(θ/2)   [dimensionless, 0–1]</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Effective ring current</div>
+        <div class="formula">I_eff = η(θ) × q × n_sw × v_sw × A_collector   [A]</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Magnetic field at loop centre (Biot-Savart)</div>
+        <div class="formula">B_shield = (μ₀ × I_eff) / (2R)   [T]</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">On-axis field profile</div>
+        <div class="formula">B(z) = (μ₀ × I_eff × R²) / (2 × (R² + z²)^(3/2))   [T]</div>
+        <div class="explain">Reduces to B_shield when z = 0</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Magnetic dipole moment</div>
+        <div class="formula">m = I_eff × π × R²   [A·m²]</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Magnetopause standoff distance</div>
+        <div class="formula">r_mp = R × [B² / (2μ₀ × ρ × v_sw²)]^(1/6)   [m]</div>
+        <div class="explain">Balance point: magnetic pressure = solar wind dynamic pressure</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Deflection rate</div>
+        <div class="formula">D = 1 − exp(−r_mp / r_habitat)</div>
+        <div class="explain">
+          D → 1: fully shielded &nbsp;|&nbsp; D → 0: unshielded.
+          Target: r_mp ≥ 2 × r_habitat for D ≥ 86%.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Self-regulation scaling law</div>
+        <div class="formula">r_mp ∝ v_sw^(1/2)</div>
+        <div class="explain">Derived by combining all layers. Storm 4× faster → standoff 2× farther.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Deflection rate table</div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <table>
+          <thead>
+            <tr><th>r_mp / r_habitat</th><th>D (deflection)</th><th>Assessment</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0.5</td><td>39%</td><td>Insufficient</td></tr>
+            <tr><td>1.0</td><td>63%</td><td>Marginal</td></tr>
+            <tr><td>2.0</td><td>86%</td><td>Acceptable</td></tr>
+            <tr><td>3.0</td><td>95%</td><td>Good</td></tr>
+            <tr><td>5.0</td><td>99.3%</td><td>Excellent</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /tab-physics -->
+
+  <!-- ══════════════ TAB: SYMBOLS ══════════════ -->
+  <div id="tab-symbols" class="tab-panel">
+
+    <div class="section">
+      <div class="section-title">Symbol table</div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <table>
+          <thead>
+            <tr><th>Symbol</th><th>Definition</th><th>Unit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>n_sw</td><td>Solar wind particle number density</td><td>m⁻³</td></tr>
+            <tr><td>v_sw</td><td>Solar wind flow velocity</td><td>m/s</td></tr>
+            <tr><td>ρ</td><td>Plasma mass density</td><td>kg/m³</td></tr>
+            <tr><td>m_p</td><td>Proton mass (1.67×10⁻²⁷)</td><td>kg</td></tr>
+            <tr><td>q</td><td>Proton charge (1.6×10⁻¹⁹)</td><td>C</td></tr>
+            <tr><td>μ₀</td><td>Permeability of free space (4π×10⁻⁷)</td><td>T·m/A</td></tr>
+            <tr><td>Φ</td><td>Kinetic energy flux</td><td>W/m²</td></tr>
+            <tr><td>θ</td><td>Channel deflection angle</td><td>degrees</td></tr>
+            <tr><td>η(θ)</td><td>Channel deflection efficiency</td><td>dimensionless</td></tr>
+            <tr><td>A_collector</td><td>Collector surface area</td><td>m²</td></tr>
+            <tr><td>I_eff</td><td>Effective ring current</td><td>A</td></tr>
+            <tr><td>R</td><td>Ring radius</td><td>m</td></tr>
+            <tr><td>B_shield</td><td>Magnetic field at ring centre</td><td>T</td></tr>
+            <tr><td>m</td><td>Magnetic dipole moment</td><td>A·m²</td></tr>
+            <tr><td>r_mp</td><td>Magnetopause standoff distance</td><td>m</td></tr>
+            <tr><td>r_habitat</td><td>Habitat (settlement zone) radius</td><td>m</td></tr>
+            <tr><td>D</td><td>Deflection rate</td><td>dimensionless [0,1]</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Physical constants used</div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <table>
+          <thead>
+            <tr><th>Constant</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>μ₀</td><td>4π × 10⁻⁷ T·m/A</td></tr>
+            <tr><td>m_p</td><td>1.6726 × 10⁻²⁷ kg</td></tr>
+            <tr><td>q</td><td>1.6022 × 10⁻¹⁹ C</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">References</div>
+      <div class="card">
+        <div class="explain" style="line-height:2">
+          Bamford, R. et al. (2012). <em>An exploration of the effectiveness of artificial mini-magnetospheres as a potential solar wind shield for future crewed missions.</em> Advances in Space Research.<br>
+          Winglee, R. et al. (2000). <em>Mini-magnetosphere plasma propulsion.</em> Journal of Geophysical Research.<br>
+          Tesla, N. (1920). <em>Valvular Conduit.</em> US Patent 1,329,559.<br>
+          NASA/ACE Solar Wind Data: <a href="https://www.solarmonitor.org" target="_blank" style="color:var(--accent)">solarmonitor.org</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-symbols -->
+
+  <footer>
+    <p>
+      Author: <a href="https://github.com/emin2010dan" target="_blank">emin2010dan</a> &nbsp;·&nbsp;
+      License: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a> &nbsp;·&nbsp;
+      This is a theoretical framework — not experimentally validated.
+    </p>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<script>
+  const mu0 = 4 * Math.PI * 1e-7;
+  const mp  = 1.67e-27;
+  const q   = 1.6e-19;
+
+  function fmt(x, d) {
+    if (x === 0) return '0';
+    const e = Math.floor(Math.log10(Math.abs(x)));
+    if (Math.abs(e) < 4) return parseFloat(x.toFixed(d || 3)).toString();
+    return x.toExponential(d || 2);
+  }
+
+  function calc() {
+    const nsw  = parseInt(document.getElementById('nsw').value)   * 1e6;
+    const vsw  = parseInt(document.getElementById('vsw').value)   * 1e3;
+    const tDeg = parseInt(document.getElementById('theta').value);
+    const R    = parseInt(document.getElementById('Rring').value);
+    const A    = parseInt(document.getElementById('Acol').value);
+    const rhab = parseInt(document.getElementById('rhab').value);
+
+    // Update labels
+    document.getElementById('nsw-v').textContent   = parseInt(document.getElementById('nsw').value) + ' cm⁻³';
+    document.getElementById('vsw-v').textContent   = parseInt(document.getElementById('vsw').value) + ' km/s';
+    document.getElementById('theta-v').textContent = tDeg + '°';
+    document.getElementById('Rring-v').textContent = R + ' m';
+    document.getElementById('Acol-v').textContent  = parseInt(document.getElementById('Acol').value).toLocaleString() + ' m²';
+    document.getElementById('rhab-v').textContent  = rhab + ' m';
+
+    // Physics
+    const rho  = nsw * mp;
+    const Phi  = 0.5 * rho * Math.pow(vsw, 3);
+    const tRad = tDeg * Math.PI / 180;
+    const eta  = Math.pow(Math.sin(tRad / 2), 2);
+    const Ieff = eta * q * nsw * vsw * A;
+    const B    = (mu0 * Ieff) / (2 * R);
+    const dynP = rho * vsw * vsw;
+    const rmp  = R * Math.pow((B * B) / (2 * mu0 * dynP), 1 / 6);
+    const D    = 1 - Math.exp(-rmp / rhab);
+
+    // Step results
+    document.getElementById('flux-result').textContent  = '→  Φ ≈ ' + fmt(Phi, 2) + ' W/m²';
+    document.getElementById('eta-result').textContent   = '→  η = sin²(' + Math.round(tDeg / 2) + '°) ≈ ' + eta.toFixed(3) + '  (' + Math.round(eta * 100) + '% efficiency)';
+    document.getElementById('ieff-result').textContent  = '→  I_eff ≈ ' + fmt(Ieff, 2) + ' A';
+    document.getElementById('bfield-result').textContent = '→  B_shield ≈ ' + fmt(B * 1e9, 2) + ' nT';
+    document.getElementById('rmp-result').textContent   = '→  r_mp ≈ ' + Math.round(rmp) + ' m  |  r_habitat = ' + rhab + ' m';
+
+    // Summary cards
+    document.getElementById('res-ieff').textContent = fmt(Ieff, 2);
+    document.getElementById('res-b').textContent    = fmt(B * 1e9, 1);
+    document.getElementById('res-rmp').textContent  = Math.round(rmp);
+    document.getElementById('res-d').textContent    = Math.round(D * 100);
+
+    // Bar
+    const pct = Math.min(100, Math.round(D * 100));
+    const bar = document.getElementById('shield-bar');
+    bar.style.width = pct + '%';
+    bar.style.background = pct > 70 ? '#3fb950' : pct > 40 ? '#d29922' : '#f85149';
+
+    // Status
+    const st = document.getElementById('shield-status');
+    if (rmp < rhab * 0.5) {
+      st.className = 'status-line bad';
+      st.textContent = '✗  Magnetopause inside habitat — shield insufficient. Increase collector area or reduce ring radius.';
+    } else if (rmp < rhab) {
+      st.className = 'status-line warn';
+      st.textContent = '⚠  Magnetopause near habitat boundary — marginal protection. Storm conditions may be dangerous.';
+    } else if (D > 0.9) {
+      st.className = 'status-line ok';
+      st.textContent = '✓  Strong shield — ' + pct + '% deflection. Habitat is protected.';
+    } else {
+      st.className = 'status-line warn';
+      st.textContent = '→  Moderate shield — ' + pct + '% deflection. May be insufficient during strong storms.';
+    }
+  }
+
+  function switchTab(id) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Init
+  calc();
+</script>
+</body>
+</html>
