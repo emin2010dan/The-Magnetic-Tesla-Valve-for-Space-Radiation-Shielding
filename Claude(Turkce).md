@@ -129,6 +129,7 @@ Ay'a ve Mars'a giden yol, belki de Tesla'nın bu zarif fikriyle biraz daha kısa
 
 > **Not:** Bu belge, [Medium makalesinde](https://medium.com/@emin2010dan) sezgisel olarak açıklanan Tesla-valfi-tabanlı pasif güneş rüzgarı kalkanı fikrinin matematiksel temelini sunmaktadır. Tüm formüller teorik olup deneysel doğrulama gerektirmektedir.
 
+*[Hesaplayıcı ve interaktif formül aracı](https://emin2010dan.github.io/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/Claude-solar-wind-shield-calculator.html)*
 ---
 
 ## İçindekiler
@@ -442,5 +443,6 @@ Süperiletken kritik sıcaklıkları (örnekler):
 - NASA Solar Wind Data: [ACE SWEPAM](https://www.solarmonitor.org)
 
 ---
+*[Hesaplayıcı ve interaktif formül aracı](https://emin2010dan.github.io/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/Claude-solar-wind-shield-calculator.html)*
 
 *Yazar: Emin | Lisans: CC BY 4.0*
