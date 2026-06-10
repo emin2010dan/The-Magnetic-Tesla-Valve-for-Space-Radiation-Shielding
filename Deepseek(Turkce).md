@@ -114,14 +114,14 @@ Sistem, birkaç süperiletken halkadan oluşan kapalı bir devre ağı olarak mo
 - **Halka 2 (Kalkan bobini):** Daha büyük çaplı, üssü örten eşmerkezli halka. Halka 1 ile karşılıklı endüktans (M) ile bağlıdır.
 
 Elektriksel eşdeğer devre (basitleştirilmiş):
-
+```
 +---[L1]---+---[L2]---+
-| | |
+|          |          |
 I1 → M * dI1/dt I2
-| | |
-+-----------+-----------+
+|          |          |
++----------+----------+
 Süperiletken kapalı devre (R ≈ 0)
-
+```
 
 Zamanla değişen akımlar için devre denklemi:
 
