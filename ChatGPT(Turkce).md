@@ -5,7 +5,7 @@
 
 #### Katkıda Bulunan ChatGPT
 
-![Nasıl Çalışır](ChatGPT-how-does-it-work-Turkce.png)
+![Pasif Plazma Kalkanı](ChatGPT-project-image.png)
 
 İnsanlık bir gün Ay’a ve Mars’a yerleşecekse, çözmek zorunda olduğu en büyük problemlerden biri radyasyon olacak.
 
@@ -171,6 +171,8 @@ Güneş’in saldırısını yine Güneş’in enerjisiyle geri püskürtecek.
 Tıpkı Tesla valfinde olduğu gibi:
 hareketli parçalar olmadan,
 akıntının kendi gücünü ona karşı kullanarak.
+
+![Nasıl Çalışır](ChatGPT-how-does-it-work-Turkce.png)
 
 [Technical Notes(English)]((https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/blob/main/ChatGPT-technical-notes-en.md)
 
