@@ -130,6 +130,7 @@ The road to the Moon and Mars may be a little shorter thanks to Tesla's elegant 
 
 > **Note:** This document presents the mathematical foundation underlying the Tesla-valve-based passive solar wind shield described intuitively in the [Medium article](https://medium.com/@emin2010dan). All formulas are theoretical and require experimental validation.
 
+*[Interactive formula calculator ](https://emin2010dan.github.io/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/Claude-solar-wind-shield-calculator.html)*
 ---
 
 ## Table of Contents
@@ -443,5 +444,8 @@ Superconductor critical temperatures (examples):
 - NASA Solar Wind Data: [ACE SWEPAM](https://www.solarmonitor.org)
 
 ---
+
+*[Interactive formula calculator ](https://emin2010dan.github.io/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/Claude-solar-wind-shield-calculator.html)*
+
 
 *Author: Emin | License: CC BY 4.0*
