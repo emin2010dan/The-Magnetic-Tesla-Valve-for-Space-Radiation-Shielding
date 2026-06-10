@@ -59,10 +59,10 @@ Perhaps one day, on the surface of the Moon, a giant, silent superconducting umb
 
 ---
 
-*Full technical details, the mathematical model, and simulation parameters can be found at the GitHub link below.*
 
 
-# Magnetic Tesla Valve (MTV): Self-Excited Plasma Dynamo Shield
+
+# Magnetic Tesla Valve (MTV): Self-Excited Plasma Dynamo Shield. Full technical details, the mathematical model, and simulation parameters
 
 ## 1. Overview
 
@@ -117,14 +117,14 @@ The system is modelled as a closed network of a few superconducting loops:
 - **Loop 2 (Shield coil):** A larger concentric loop covering the habitat, coupled to Loop 1 via mutual inductance (M).
 
 Simplified electrical equivalent circuit:
-
+```
 +---[L1]---+---[L2]---+
-| | |
+|          |          |
 I1 → M * dI1/dt I2
-| | |
-+-----------+-----------+
+|           |         |
++-----------+---------+
 Superconducting closed circuit (R ≈ 0)
-
+```
 
 Circuit equations for time-varying currents:
 
