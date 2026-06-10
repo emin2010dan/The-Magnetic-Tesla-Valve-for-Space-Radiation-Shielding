@@ -1,7 +1,7 @@
 
 # The Mars Shield: Stopping Solar Wind with Nikola Tesla’s Genius
 
-[Read this article in English](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/blob/main/Qwen(Turkce).md)
+[Bu makalenin Türkçe versiyonu](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/blob/main/Qwen(Turkce).md)
 
 #### Katkıda Bulunan Qwen
 
