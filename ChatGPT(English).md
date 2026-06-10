@@ -6,7 +6,7 @@
 #### Contributed By ChatGPT
 
 
-![How Does It work](ChatGPT-how-does-it-work-English.png)
+![Passive Plasma Shield](ChatGPT-project-image.png)
 
 
 If humanity is going to settle on the Moon or Mars one day, one of the biggest problems we will have to solve is radiation.
@@ -168,6 +168,9 @@ And perhaps these systems will defend humanity by turning the Sun’s own energy
 Just like Tesla’s valve:
 without moving parts,
 using the flow’s own power to resist the flow itself.
+
+
+![How Does It work](ChatGPT-how-does-it-work-English.png)
 
 
 
