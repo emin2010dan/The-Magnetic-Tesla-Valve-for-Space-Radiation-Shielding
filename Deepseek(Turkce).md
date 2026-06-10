@@ -57,9 +57,9 @@ Belki de bir gün, Ay yüzeyinde, devasa ama sessiz süperiletken bir şemsiye y
 
 ---
 
-*Bu konseptin tam teknik detaylarını, matematiksel modelini ve simülasyon parametrelerini aşağıdaki GitHub bağlantısında bulabilirsiniz.*
 
-# Manyetik Tesla Valfi (MTV): Kendinden Uyarmalı Plazma Dinamo Kalkanı
+
+# Manyetik Tesla Valfi (MTV): Kendinden Uyarmalı Plazma Dinamo Kalkanı.Teknik detaylar, matematiksel model ve simülasyon parametreleri
 
 ## 1. Genel Bakış
 
