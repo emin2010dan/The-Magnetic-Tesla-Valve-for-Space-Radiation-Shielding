@@ -1,5 +1,9 @@
 # Güneş rüzgârından güç alan adaptif manyetik kalkan: fikir ve yol haritası
 
+[Read this article in English](https://github.com/emin2010dan/The-Magnetic-Tesla-Valve-for-Space-Radiation-Shielding/blob/main/Copilot(English).md)
+
+#### Katkıda Bulunan Copilot
+
 **Özet**  
 Bu makale, Ay ve Mars gibi manyetik koruması zayıf ortamlarda güneş rüzgârının enerjisini kullanarak rüzgârla orantılı çalışan, içinde hareketli veya hassas elektronik parça barındırmayan bir manyetik/plazma kalkanı fikrini sunar.  
 Fikir başlangıcı: **Cs50p**  
