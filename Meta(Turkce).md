@@ -165,5 +165,5 @@ Tesla geometrisi Re_crit ≈ 1–5'e düşürür (düz boruda ~2000).
 - NASA mini-magnetosphere deneyleri
 
 ---
-Katkıda bulunmak isterseniz pull request açın, atıfta başlangıç fikri sahibini belirtin.
+Katkıda bulunursanız lütfen atıfta başlangıç fikri sahibini belirtin.
 
