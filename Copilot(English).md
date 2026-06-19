@@ -6,7 +6,7 @@
 
 **Abstract**  
 This article presents a concept for an adaptive magnetic/plasma shield that uses solar wind energy to scale its protective effect with incoming particle flux, while avoiding moving parts and exposed sensitive electronics.  
-Idea originator: **Cs50p**  
+Idea originator: **Emin**  
 Technical solution and formulas: **Assistant**
 
 ---
