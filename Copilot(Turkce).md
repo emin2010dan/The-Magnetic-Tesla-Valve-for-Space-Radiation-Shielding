@@ -6,7 +6,7 @@
 
 **Özet**  
 Bu makale, Ay ve Mars gibi manyetik koruması zayıf ortamlarda güneş rüzgârının enerjisini kullanarak rüzgârla orantılı çalışan, içinde hareketli veya hassas elektronik parça barındırmayan bir manyetik/plazma kalkanı fikrini sunar.  
-Fikir başlangıcı: **Cs50p**  
+Fikir başlangıcı: **Emin**  
 Teknik çözüm ve formüller: **Assistant**
 
 ---
