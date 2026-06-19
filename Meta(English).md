@@ -164,5 +164,5 @@ Tesla geometry lowers Re_crit to ~1–5 (vs ~2000 in straight pipe).
 - NASA mini-magnetosphere experiments
 
 ---
-If you contribute, please open a pull request and credit the originator of the initial idea.
+If you contribute, please  credit the originator of the initial idea.
 
