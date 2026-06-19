@@ -92,19 +92,6 @@ This layer requires no electronics or power — it is simply mass.
 
 ---
 
-## The Simulation
-
-To visualize this concept, we built an interactive web simulation. You can adjust solar wind intensity from "Calm" to "X9 Solar Storm" and watch in real time how each layer of the system responds:
-
-- Particles accelerate and grow denser
-- Passive rings glow brighter as increasing induced current flows through them
-- The magnetic field bubble expands and intensifies
-- Live metrics display shield strength, radiation reduction, and power consumption
-
-*[Simulation link to be added]*
-
----
-
 ## Why Is This an Original Idea?
 
 The "mini-magnetosphere" concept is already being researched in existing literature — Cambridge University, the Rutherford Appleton Laboratory, NASA, and ESA all have active work in this area. However, the vast majority of current approaches rely on active electromagnets drawing significant continuous power.
