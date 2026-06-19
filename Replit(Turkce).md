@@ -89,18 +89,6 @@ Son olarak, yerleşmenin dış duvarları polietilen veya su dolu panellerle kap
 
 Bu katman, elektronik veya güç gerektirmez; sadece malzemedir.
 
----
-
-## Simülasyon
-
-Bu kavramı görselleştirmek için interaktif bir web simülasyonu oluşturduk. Simülasyonda güneş rüzgarı şiddetini "Sakin"den "X9 Güneş Fırtınası"na kadar ayarlayabilirsiniz ve sistemin her katmanının nasıl tepki verdiğini canlı olarak görebilirsiniz:
-
-- Parçacıklar hızlanır ve yoğunlaşır
-- Pasif halkalar parlayarak artan indüksiyon akımını gösterir
-- Manyetik alan balonu büyür ve yoğunlaşır
-- Canlı metrikler kalkan gücünü, radyasyon azaltımını ve enerji tüketimini gösterir
-
-*[Simülasyon bağlantısı buraya eklenecek]*
 
 ---
 
